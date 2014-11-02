@@ -1,5 +1,6 @@
 <?php
 require_once 'Carta.class.php';
+require 'fpdf.php';
 class Jugador {
 
     private $Nombre;
@@ -46,7 +47,23 @@ class Jugador {
 		return count($this->Cartas);
 	}
 	function MostrarPDF(){ //Falta implementar
-	    
+                $pdf = new FPDF('L','mm','A5');
+                $pdf->AddPage();
+                $pdf->SetFont('Arial','B',16);
+                $pdf->Cell(40,10,'Cartas del jugador '.($this->Nombre+1),1);
+                $pdf->Ln();
+                $ejey=$pdf->GetY()+10;
+                $i=0.5;
+                foreach ($this->Cartas as $carta){
+                    if ($i>9){ 
+                        $i=0.5;
+                        $ejey +=20;
+                    }
+                    $ejex=$i*20;
+                    $pdf->Image('baraja_uno/'.$carta->getNumero().'_'.$carta->getPalo().'.jpg',$ejex,$ejey);
+                    $i++;
+                }
+                $pdf->Output();
 	}
     
 }

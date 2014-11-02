@@ -22,7 +22,7 @@ class Carta {
 	$this->Numero=$p;	
     }
     function Mostrar(){
-	echo '<img src="baraja_uno/'.  $this->getNumero().'_'.  $this->getPalo().'.bmp"></img>';
+	echo '<img src="baraja_uno/'.  $this->getNumero().'_'.  $this->getPalo().'.jpg"></img>';
     }
     
 }
